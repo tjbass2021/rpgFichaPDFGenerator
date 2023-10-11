@@ -1,7 +1,7 @@
 from reportlab.pdfgen import canvas
-
-
-# from reportlab.lib.pagesizes import A5
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.platypus import Paragraph
+from reportlab.lib.pagesizes import A4
 
 
 def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alinhamento,
@@ -13,37 +13,43 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
     antecedente = str(antecedente).upper()
     alinhamento = str(alinhamento).upper()
 
-    c = canvas.Canvas(f'{nomepersonagem}.pdf')
-    c.drawImage('./ded.png', 370, 720, 60, preserveAspectRatio=True)
-    c.setFont('Helvetica-Bold', 16)
-    c.drawString(50, 800, 'DADOS')
-    c.setFont('Helvetica', 12)
-    c.drawString(50, 760, f'Nome do Personagem: {nomepersonagem}  Jogador: {nomejogador}')
-    c.drawString(50, 740, f'Nível: {nivel}  Classe: {classe}')
-    c.drawString(50, 720, f'Raça: {raca}')
-    c.drawString(50, 700, f'Alinhamento: {alinhamento}  Antecedente: {antecedente}')
+    style1 = ParagraphStyle('Estilo 1',
+                            fontName='Helvetica',
+                            backColor='#F1F1F1',
+                            fontSize=14,
+                            borderColor='#000000',
+                            borderWidth=2,
+                            borderPadding=(20, 20, 20),
+                            leading=20,
+                            alignment=0)
 
-    c.setFont('Helvetica-Bold', 14)
+    c = canvas.Canvas(f'{nomepersonagem}.pdf', pagesize=A4)
 
-    # ATRIBUTOS
+    p1 = Paragraph(f'''
+    <b>DADOS BÁSICOS</b><br/>
+    <br/>
+    <b>Nome:</b> {nomepersonagem}<br/>
+    <b>Nome do jogador:</b> {nomejogador}<br/>
+    <b>Nível:</b> {nivel}  <b>Classe:</b> {classe}
+    <b>Raça:</b> {raca}<br/>
+    <b>Alinhamento:</b> {alinhamento} <b>Antecedente:</b> {antecedente}<br/>
+''', style1)
 
+    p2 = Paragraph(f'''<b>ATRIBUTOS</b> <br/><br/>
+    <b>Força:</b> {forca}<br/>
+    <b>Destreza:</b> {destreza}<br/>
+    <b>Constituição:</b> {constituicao}<br/>
+    <b>Inteligência:</b> {inteligencia}<br/>
+    <b>Sabedoria:</b> {sabedoria}<br/>
+    <b>Carisma:</b> {carisma}''', style1)
 
-    c.drawString(50, 660, 'ATRIBUTOS')
-    c.setFont('Helvetica', 12)
-    c.drawString(50, 620, f'Força: {forca}')
-    c.drawString(180, 620, f'Destreza: {destreza}')
-    c.drawString(50, 600, f'Constituição: {constituicao}')
-    c.drawString(180, 600, f'Inteligência: {inteligencia}')
-    c.drawString(50, 580, f'Sabedoria: {sabedoria}')
-    c.drawString(180, 580, f'Carisma: {carisma}')
+    p2.wrapOn(c, 500, 100)
+    p2.drawOn(c, 40, 350)
+    p1.wrapOn(c, 500, 50)
+    p1.drawOn(c, 40, 600)
+    c.drawImage('./ded.png', 450, 700, 60, preserveAspectRatio=True)
+    c.setFont('Helvetica-Bold', 28)
+    c.drawString(50, 775, 'FICHA DE PERSONAGEM')
 
-    # my_text = "Meu nome é Thiago\ntenho 29 anos"
-    # textobject = c.beginText(50, 500)
-    # for line in my_text.splitlines(False):
-    #     textobject.textLine(line.rstrip())
-    # c.drawText(textobject)
-
-    c.showPage()
     c.save()
 
-# generate('Thiago', 'Humano', 'Estudante', '20')

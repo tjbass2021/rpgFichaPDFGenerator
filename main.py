@@ -1,5 +1,5 @@
 import PySimpleGUI as Sg
-import pdf
+from pdf import generate
 
 
 class TelaRPG:
@@ -86,9 +86,12 @@ Sabedoria: {sabedoria}
 Carisma: {carisma}
 ''')
             print(self.button)
-            pdf.generate(nome, nomejogador, raca, classe, nivel, antecedente,
+            try:
+                generate(nome, nomejogador, raca, classe, nivel, antecedente,
                          alinhamento, forca, destreza, constituicao, inteligencia,
                          sabedoria, carisma)
+            except:
+                print("Erro ao chamar a função!!")
 
 
 tela = TelaRPG()
