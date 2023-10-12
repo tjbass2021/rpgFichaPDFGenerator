@@ -67,31 +67,13 @@ class TelaRPG:
             sabedoria = self.values['sabedoria']
             carisma = self.values['carisma']
 
-            print(f'''
-Nome: {nome}
-Nome do Jogador: {nomejogador}
-Raça: {raca}
-Classe: {classe}
-Nível: {nivel}
-Alinhamento: {alinhamento}
-Antecedente: {antecedente}
-
-ATRIBUTOS
-
-Força: {forca}
-Destreza: {destreza}
-Constituição: {constituicao}
-Inteligência: {inteligencia}
-Sabedoria: {sabedoria}
-Carisma: {carisma}
-''')
-            print(self.button)
             try:
                 generate(nome, nomejogador, raca, classe, nivel, antecedente,
                          alinhamento, forca, destreza, constituicao, inteligencia,
                          sabedoria, carisma)
+                print(f'{nome}.pdf gerado com sucesso!')
             except:
-                print("Erro ao chamar a função!!")
+                print("Erro na execução da função 'generate()'")
 
 
 tela = TelaRPG()

@@ -2,6 +2,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.platypus import Paragraph
 from reportlab.lib.pagesizes import A4
+from functions import modificador
 
 
 def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alinhamento,
@@ -12,6 +13,20 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
     classe = str(classe).upper()
     antecedente = str(antecedente).upper()
     alinhamento = str(alinhamento).upper()
+    forca = int(forca)
+    destreza = int(destreza)
+    constituicao = int(constituicao)
+    inteligencia = int(inteligencia)
+    sabedoria = int(sabedoria)
+    carisma = int(carisma)
+
+    # Cálculo de modificadores
+    modforca = modificador(forca)
+    moddestreza = modificador(destreza)
+    modconstituicao = modificador(constituicao)
+    modinteligencia = modificador(inteligencia)
+    modsabedoria = modificador(sabedoria)
+    modcarisma = modificador(carisma)
 
     style1 = ParagraphStyle('Estilo 1',
                             fontName='Helvetica',
@@ -36,12 +51,18 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
 ''', style1)
 
     p2 = Paragraph(f'''<b>ATRIBUTOS</b> <br/><br/>
-    <b>Força:</b> {forca}<br/>
-    <b>Destreza:</b> {destreza}<br/>
-    <b>Constituição:</b> {constituicao}<br/>
-    <b>Inteligência:</b> {inteligencia}<br/>
-    <b>Sabedoria:</b> {sabedoria}<br/>
-    <b>Carisma:</b> {carisma}''', style1)
+    <b>Força:</b> ........... <b><font color="blue">({forca})</font></b> ..... 
+    Modificador: <b><font color="red">[{modforca}]</font></b><br/>
+    <b>Destreza:</b> ........ <b><font color="blue">({destreza})</font></b> ..... 
+    Modificador: <b><font color="red">[{moddestreza}]</font></b><br/>
+    <b>Constituição:</b> .... <b><font color="blue">({constituicao})</font></b> ..... 
+    Modificador: <b><font color="red">[{modconstituicao}]</font></b><br/>
+    <b>Inteligência:</b> .... <b><font color="blue">({inteligencia})</font></b> ..... 
+    Modificador: <b><font color="red">[{modinteligencia}]</font></b><br/>
+    <b>Sabedoria:</b> ....... <b><font color="blue">({sabedoria})</font></b> ..... 
+    Modificador: <b><font color="red">[{modsabedoria}]</font></b><br/>
+    <b>Carisma:</b> ......... <b><font color="blue">({carisma})</font></b> ..... 
+    Modificador: <b><font color="red">[{modcarisma}]</font></b>''', style1)
 
     p2.wrapOn(c, 500, 100)
     p2.drawOn(c, 40, 350)
@@ -52,4 +73,3 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
     c.drawString(50, 775, 'FICHA DE PERSONAGEM')
 
     c.save()
-
