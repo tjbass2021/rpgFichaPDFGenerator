@@ -34,6 +34,7 @@ def modificador(atributo):
         mod = 10
     return mod
 
+
 def calcvida(classe, modconstituicao):
     vida = 0
     classe = classe.lower()
@@ -62,12 +63,14 @@ def calcvida(classe, modconstituicao):
 
     return vida
 
+
 def aumentoatributoforca(raca, forca):
     forca = int(forca)
     raca = raca.lower()
     if raca == 'anão da montanha' or raca == 'humano' or raca == 'draconato' or raca == 'meio-orc':
         forca = forca + 2
     return forca
+
 
 def aumentoatributodestreza(raca, destreza):
     destreza = int(destreza)
@@ -78,6 +81,7 @@ def aumentoatributodestreza(raca, destreza):
         destreza = destreza + 1
     return destreza
 
+
 def aumentoatributoconstituicao(raca, constituicao):
     constituicao = int(constituicao)
     raca = raca.lower()
@@ -87,14 +91,16 @@ def aumentoatributoconstituicao(raca, constituicao):
         constituicao = constituicao + 1
     return constituicao
 
+
 def aumentoatributointeligencia(raca, inteligencia):
     inteligencia = int(inteligencia)
     raca = raca.lower()
-    if raca == 'humano' or raca =='alto elfo' or raca == 'tiefling':
+    if raca == 'humano' or raca == 'alto elfo' or raca == 'tiefling':
         inteligencia = inteligencia + 1
     elif raca == 'gnomo':
         inteligencia = inteligencia + 2
     return inteligencia
+
 
 def aumentoatributosabedoria(raca, sabedoria):
     sabedoria = int(sabedoria)
@@ -102,6 +108,7 @@ def aumentoatributosabedoria(raca, sabedoria):
     if raca == 'humano' or raca == 'anão da colina' or raca == 'elfo da floresta':
         sabedoria = sabedoria + 1
     return sabedoria
+
 
 def aumentoatributocarisma(raca, carisma):
     carisma = int(carisma)

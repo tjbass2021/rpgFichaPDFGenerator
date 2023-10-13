@@ -39,7 +39,6 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
     # Cálculo de vida do personagem
     vida = calcvida(classe, modconstituicao)
 
-
     style1 = ParagraphStyle('Estilo 1',
                             fontName='Helvetica',
                             backColor='#F1F1F1',
