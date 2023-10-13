@@ -2,7 +2,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.platypus import Paragraph
 from reportlab.lib.pagesizes import A4
-from functions import modificador
+from functions import *
 
 
 def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alinhamento,
@@ -20,6 +20,14 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
     sabedoria = int(sabedoria)
     carisma = int(carisma)
 
+    # Bônus de atributo a partir da raça escolhida
+    forca = aumentoatributoforca(raca, forca)
+    destreza = aumentoatributodestreza(raca, destreza)
+    constituicao = aumentoatributoconstituicao(raca, constituicao)
+    inteligencia = aumentoatributointeligencia(raca, inteligencia)
+    sabedoria = aumentoatributosabedoria(raca, sabedoria)
+    carisma = aumentoatributocarisma(raca, carisma)
+
     # Cálculo de modificadores
     modforca = modificador(forca)
     moddestreza = modificador(destreza)
@@ -27,6 +35,9 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
     modinteligencia = modificador(inteligencia)
     modsabedoria = modificador(sabedoria)
     modcarisma = modificador(carisma)
+
+    # Cálculo de vida do personagem
+    vida = calcvida(classe, modconstituicao)
 
     style1 = ParagraphStyle('Estilo 1',
                             fontName='Helvetica',

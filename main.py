@@ -38,9 +38,7 @@ class TelaRPG:
              Sg.Input(size=(5, 0), key='carisma', background_color='white')],
             [Sg.Text('', size=(1, 1))],
 
-            [Sg.Button('Generate')],
-            [Sg.Output(size=(36, 5))]
-
+            [Sg.Button('Clear', button_color='yellow'), Sg.Button('Generate'), Sg.Button('Exit', button_color='red')],
         ]
 
         # Janelas
@@ -50,6 +48,7 @@ class TelaRPG:
     def start(self):
         # self.pdf_generator()
         while True:
+
             self.button, self.values = self.janela.Read()
             nome = self.values['nome']
             raca = self.values['raca']
@@ -67,13 +66,45 @@ class TelaRPG:
             sabedoria = self.values['sabedoria']
             carisma = self.values['carisma']
 
-            try:
+            if self.button == 'Generate':
                 generate(nome, nomejogador, raca, classe, nivel, antecedente,
                          alinhamento, forca, destreza, constituicao, inteligencia,
                          sabedoria, carisma)
-                print(f'{nome}.pdf gerado com sucesso!')
-            except:
-                print("Erro na execução da função 'generate()'")
+                Sg.popup(f'{nome}.pdf gerado com sucesso!', title="Sucesso!")
+                # Limpa os dados da janela
+                self.janela['nome'].update('')
+                self.janela['nomejogador'].update('')
+                self.janela['raca'].update('')
+                self.janela['classe'].update('')
+                self.janela['nivel'].update('')
+                self.janela['alinhamento'].update('')
+                self.janela['antecedente'].update('')
+                self.janela['forca'].update('')
+                self.janela['constituicao'].update('')
+                self.janela['destreza'].update('')
+                self.janela['inteligencia'].update('')
+                self.janela['sabedoria'].update('')
+                self.janela['carisma'].update('')
+            # except ValueError:
+            #     pass
+                # Sg.popup("Erro ao executar a função 'generate()", title="Erro!")
+
+            if self.button == 'Exit':
+                break
+            if self.button == 'Clear':
+                self.janela['nome'].update('')
+                self.janela['nomejogador'].update('')
+                self.janela['raca'].update('')
+                self.janela['classe'].update('')
+                self.janela['nivel'].update('')
+                self.janela['alinhamento'].update('')
+                self.janela['antecedente'].update('')
+                self.janela['forca'].update('')
+                self.janela['constituicao'].update('')
+                self.janela['destreza'].update('')
+                self.janela['inteligencia'].update('')
+                self.janela['sabedoria'].update('')
+                self.janela['carisma'].update('')
 
 
 tela = TelaRPG()
