@@ -30,7 +30,7 @@ def modificador(atributo):
         mod = 8
     elif atributo == 28 or atributo == 29:
         mod = 9
-    elif atributo == 30:
+    elif atributo >= 30:
         mod = 10
     return mod
 
