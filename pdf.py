@@ -38,6 +38,8 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
 
     # Cálculo de vida do personagem
     vida = calcvida(classe, modconstituicao)
+    # Cálculo de classe de armadura
+    classearmadura = ca(moddestreza)
 
     style1 = ParagraphStyle('Estilo 1',
                             fontName='Helvetica',
@@ -48,6 +50,16 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
                             borderPadding=(20, 20, 20),
                             leading=20,
                             alignment=0)
+    style2 = ParagraphStyle('Estilo 2',
+                            fontName='Helvetica',
+                            backColor='#F1F1F1',
+                            fontSize=16,
+                            borderColor='#000000',
+                            borderWidth=2,
+                            borderPadding=(20, 20, 20),
+                            leading=20,
+                            alignment=1
+                            )
 
     c = canvas.Canvas(f'{nomepersonagem}.pdf', pagesize=A4)
 
@@ -77,8 +89,10 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
 
     p3 = Paragraph(f'''
     <b>VIDA</b><br/>
-    {vida}
-''', style1)
+    <b><font color="blue">{vida}</font></b><br/>
+    <b>CA</b><br/>
+    <b><font color="blue">{classearmadura}</font></b>
+''', style2)
 
     p3.wrapOn(c, 50, 100)
     p3.drawOn(c, 400, 400)
