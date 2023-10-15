@@ -38,7 +38,7 @@ class TelaRPG:
              Sg.Input(size=(5, 0), key='carisma', background_color='white')],
             [Sg.Text('', size=(1, 1))],
 
-            [Sg.Button('Clear', button_color='yellow'), Sg.Button('Generate'), Sg.Button('Exit', button_color='red')],
+            [Sg.Button('Clear'), Sg.Button('Generate'), Sg.Button('Exit', button_color='red')],
         ]
 
         # Janelas
