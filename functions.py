@@ -118,3 +118,8 @@ def aumentoatributocarisma(raca, carisma):
     elif raca == 'tiefling' or raca == 'meio-elfo':
         carisma = carisma + 2
     return carisma
+
+
+def ca(moddestreza):
+    moddestreza = int(moddestreza)
+    return moddestreza + 10
