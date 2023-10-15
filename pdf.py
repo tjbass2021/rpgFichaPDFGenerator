@@ -75,7 +75,14 @@ def generate(nomepersonagem, nomejogador, raca, classe, nivel, antecedente, alin
     <b>Carisma:</b> ......... <b><font color="blue">({carisma})</font></b> ..... 
     Modificador: <b><font color="red">[{modcarisma}]</font></b>''', style1)
 
-    p2.wrapOn(c, 500, 100)
+    p3 = Paragraph(f'''
+    <b>VIDA</b><br/>
+    {vida}
+''', style1)
+
+    p3.wrapOn(c, 50, 100)
+    p3.drawOn(c, 400, 400)
+    p2.wrapOn(c, 270, 100)
     p2.drawOn(c, 40, 350)
     p1.wrapOn(c, 500, 50)
     p1.drawOn(c, 40, 600)
